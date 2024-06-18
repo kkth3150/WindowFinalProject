@@ -21,12 +21,19 @@ public:
 		m_iGun_Num = iNum;
 	}
 
+	void Shot_By_Dir();
 
 public:
 
 	int m_iGun_Num;
 	float m_fBossPosX;
 	float m_fBossPosY;
+
+	float angle = 0.0f;
+	DWORD m_dwShot_Delay;
+	DWORD m_dwTimer;
+
+	
 
 };
 

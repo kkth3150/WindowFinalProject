@@ -73,9 +73,6 @@
     <Filter Include="03.Object_Manager\GameObjects\03-03.Boss\Gun">
       <UniqueIdentifier>{fa25c216-1c38-4ff4-b464-a0f02494b9bb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Object_Manager\GameObjects\03-03.Boss\NewFilter1">
-      <UniqueIdentifier>{76de5901-a02b-471c-995b-cdb9e5c96d3c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.Object_Manager\GameObjects\03-04.Boss_Bullet">
       <UniqueIdentifier>{fafe7fd7-4d60-4e29-8581-7d08a62aceca}</UniqueIdentifier>
     </Filter>

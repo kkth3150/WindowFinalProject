@@ -20,8 +20,8 @@ void CBoss::Initialize()
 	Set_Init_Boss_Parts();
 
 	m_pFrameKey = L"BOSS_IDLE";
-	m_tInfo.fX = 800.f;
-	m_tInfo.fY = 500.f;
+	m_tInfo.fX = 1000.f;
+	m_tInfo.fY = 800.f;
 	m_tInfo.fCX = 1365.f;
 	m_tInfo.fCY = 166.f;
 	m_fSpeed = 3.f;
@@ -29,7 +29,10 @@ void CBoss::Initialize()
 
 int CBoss::Update()
 {
-	m_tInfo.fX -= m_fSpeed;
+	if(m_tInfo.fX<600){
+		m_tInfo.fX -= m_fSpeed;
+	}
+	
 	__super::Update_Rect();
 
 

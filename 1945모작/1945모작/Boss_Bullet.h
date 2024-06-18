@@ -4,6 +4,9 @@
 class CBoss_Bullet : public CGameObject
 {
 public:
+	enum BULLET_KIND_BOSS { BOSS_BULLET_GUN, BOSS_BULLET_POSIN, BOSS_BULLET_END };
+
+public:
 	CBoss_Bullet();
 	virtual ~CBoss_Bullet();
 
@@ -13,6 +16,13 @@ public:
 	virtual void Late_Update() override;
 	virtual void Render(HDC hDC) override;
 	virtual void Release(void) override;
+
+public:
+	void Set_Direction(float x, float y);
+	void Set_BOSS_BulletKind(int iNum) {
+
+		m_eBossBulletKind = (BULLET_KIND_BOSS)iNum;
+	};
 
 private:
 
@@ -27,7 +37,8 @@ private:
 	int						m_iMoveRange;
 	int						m_iFrameCnt;
 
-	PLAYER_BULLET			m_eBulletKind;
-
+	Vector2					m_vDirection;
+	BULLET_KIND_BOSS		m_eBossBulletKind;
+	
 };
 

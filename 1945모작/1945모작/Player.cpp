@@ -131,18 +131,18 @@ void CPlayer::Key_Input()
 
 void CPlayer::Shot()
 {
-	CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYERBULLET,CAbstractFactory<CPlayer_Bullet>::CreateBullet(m_tInfo.fX,m_tInfo.fY-30.f, PB_NORMAL));
+	CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYERBULLET,CAbstractFactory<CPlayer_Bullet>::CreatePlayerBullet(m_tInfo.fX,m_tInfo.fY-30.f, PB_NORMAL));
 	if (m_ePlayerShotState == PLAYER_UPGRADE) {
 
-		CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYERBULLET, CAbstractFactory<CPlayer_Bullet>::CreateBullet(m_tInfo.fX - 10.f, m_tInfo.fY - 20.f, PB_LSUB));
-		CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYERBULLET, CAbstractFactory<CPlayer_Bullet>::CreateBullet(m_tInfo.fX + 10.f, m_tInfo.fY - 20.f, PB_RSUB));
+		CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYERBULLET, CAbstractFactory<CPlayer_Bullet>::CreatePlayerBullet(m_tInfo.fX - 10.f, m_tInfo.fY - 20.f, PB_LSUB));
+		CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYERBULLET, CAbstractFactory<CPlayer_Bullet>::CreatePlayerBullet(m_tInfo.fX + 10.f, m_tInfo.fY - 20.f, PB_RSUB));
 
 	}
 	if (m_ePlayerShotState == PLAYER_FINAL) {
-		CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYERBULLET, CAbstractFactory<CPlayer_Bullet>::CreateBullet(m_tInfo.fX - 10.f, m_tInfo.fY - 20.f, PB_LSUB));
-		CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYERBULLET, CAbstractFactory<CPlayer_Bullet>::CreateBullet(m_tInfo.fX + 10.f, m_tInfo.fY - 20.f, PB_RSUB));
-		CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYERBULLET, CAbstractFactory<CPlayer_Bullet>::CreateBullet(m_tInfo.fX + 22.f, m_tInfo.fY, PB_RSIDE));
-		CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYERBULLET, CAbstractFactory<CPlayer_Bullet>::CreateBullet(m_tInfo.fX - 22.f, m_tInfo.fY, PB_LSIDE));
+		CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYERBULLET, CAbstractFactory<CPlayer_Bullet>::CreatePlayerBullet(m_tInfo.fX - 10.f, m_tInfo.fY - 20.f, PB_LSUB));
+		CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYERBULLET, CAbstractFactory<CPlayer_Bullet>::CreatePlayerBullet(m_tInfo.fX + 10.f, m_tInfo.fY - 20.f, PB_RSUB));
+		CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYERBULLET, CAbstractFactory<CPlayer_Bullet>::CreatePlayerBullet(m_tInfo.fX + 22.f, m_tInfo.fY, PB_RSIDE));
+		CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYERBULLET, CAbstractFactory<CPlayer_Bullet>::CreatePlayerBullet(m_tInfo.fX - 22.f, m_tInfo.fY, PB_LSIDE));
 	}
 
 }

@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Boss_Posin.h"
 #include "Boss_Gun.h"
+#include "Boss_Bullet.h"
 
 template<typename T>
 class CAbstractFactory
@@ -62,13 +63,26 @@ public:
 		return pGameObject;
 	}
 
-	static CGameObject* CreateBullet(float fX, float fY, PLAYER_BULLET eBullet)
+	static CGameObject* CreatePlayerBullet(float fX, float fY, PLAYER_BULLET eBullet)
 	{
 		CGameObject* pGameObject = new T;
 		pGameObject->Set_Pos(fX, fY);
 		dynamic_cast<CPlayer_Bullet*>(pGameObject)->Set_BulletKind(eBullet);
 		pGameObject->Initialize();
 	
+
+		return pGameObject;
+	}
+
+
+	static CGameObject* CreateBossBullet(float fX, float fY,float DirX, float DirY, int iBulletKind)
+	{
+		CGameObject* pGameObject = new T;
+		pGameObject->Set_Pos(fX, fY);
+		dynamic_cast<CBoss_Bullet*>(pGameObject)->Set_BOSS_BulletKind(iBulletKind);
+		dynamic_cast<CBoss_Bullet*>(pGameObject)->Set_Direction(DirX, DirY);
+		pGameObject->Initialize();
+
 
 		return pGameObject;
 	}

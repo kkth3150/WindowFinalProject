@@ -39,13 +39,14 @@ void CLevel_GamePlay::Initialize()
 	dynamic_cast<CUI*>(pLifeUI)->Set_State(UI_LIFE);
 	CObject_Manager::Get_Instance()->Add_Object(OBJ_UI, pLifeUI);
 
+
 }
 
 int CLevel_GamePlay::Update()
 {
+	
 
-
-	if (m_iMap_Update > MAP_SizeY - WINCY - 1400 && !m_bBossGen) {
+	if (m_iMap_Update > MAP_SizeY - WINCY - 4000 && !m_bBossGen) {
 		m_bBossGen = true;
 		CObject_Manager::Get_Instance()->Add_Object(OBJ_BOSS, CAbstractFactory<CBoss>::Create());
 	}

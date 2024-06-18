@@ -1,7 +1,9 @@
 #include "pch.h"
 #include "Boss_Gun.h"
+//#include "Boss_Bullet.h"
 #include "Bmp_Manager.h"
 #include "Object_Manager.h"
+#include "AbstractFactory.h"
 
 CBoss_Gun::CBoss_Gun()
 {
@@ -14,6 +16,7 @@ CBoss_Gun::~CBoss_Gun()
 void CBoss_Gun::Initialize()
 {
 	CBmp_Manager::Get_Instance()->Insert_Bmp(L"../Image/Boss/mini_28X28X16.bmp", L"MINI_GUN");
+	CBmp_Manager::Get_Instance()->Insert_Bmp(L"../Image/Boss/Boss_Gun_Bullet(8X8X2).bmp", L"MINI_GUN_BULLET");
 	m_pFrameKey = L"MINI_GUN";
 	m_tInfo.fCX = 28.f;
 	m_tInfo.fCY = 28.f;
@@ -22,6 +25,9 @@ void CBoss_Gun::Initialize()
 	m_tFrame.iMotion = 0;
 	m_tFrame.dwSpeed = 20;
 	m_tFrame.dwTime = GetTickCount64();
+	m_dwShot_Delay = 500;
+	m_dwTimer = GetTickCount64();
+
 }
 
 int CBoss_Gun::Update()
@@ -95,6 +101,10 @@ int CBoss_Gun::Update()
 		break;
 	}
 
+
+	Shot_By_Dir();
+
+
 	__super::Update_Rect();
 	return OBJ_NOEVENT;
 }
@@ -113,8 +123,8 @@ void CBoss_Gun::Render(HDC hDC)
 		(int)m_tInfo.fY - m_tInfo.fCY / 2,	//복사 받을 Y 위치
 		28,									//복사 받을 가로 길이
 		28,									//복사 받을 세로 길이
-		GunDC,							//복사할 비트맵 DC
-		28 * m_tFrame.iFrameStart,					//비트맵 이미지의 왼쪽 X 좌표
+		GunDC,								//복사할 비트맵 DC
+		28 * m_tFrame.iFrameStart,			//비트맵 이미지의 왼쪽 X 좌표
 		0,									//비트맵 이미지의 위쪽 Y 좌표
 		m_tInfo.fCX,						//복사할 이미지의 가로 사이즈 
 		m_tInfo.fCY,						//복사할 이미지의 세로 사이즈
@@ -133,5 +143,30 @@ void CBoss_Gun::Motion_Change()
 	m_tFrame.iMotion = 0;
 	m_tFrame.dwSpeed = 20;
 	m_tFrame.dwTime = GetTickCount64();
+}
+
+void CBoss_Gun::Shot_By_Dir()
+{
+	
+	angle += 10.0f;
+	if (angle >= 360.0f) {
+		angle -= 360.0f;
+	}
+
+	if (m_dwTimer + m_dwShot_Delay < GetTickCount64()) {
+		m_dwTimer = GetTickCount64();
+		
+		
+		float radians = angle * (3.14159265f / 180.0f);
+		float dirX = cos(radians);
+		float dirY = sin(radians);
+		
+		
+
+
+
+		CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYERBULLET, 
+			CAbstractFactory<CBoss_Bullet>::CreateBossBullet(m_tInfo.fX, m_tInfo.fY, dirX, dirY,0));
+	}
 }
 

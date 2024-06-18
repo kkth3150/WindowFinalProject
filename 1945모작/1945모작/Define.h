@@ -25,6 +25,7 @@ void Safe_Delete(T& Temp)
 	}
 }
 
+
 typedef struct tagInfo
 {
 	float	fX;		// 중점 X
@@ -33,6 +34,23 @@ typedef struct tagInfo
 	float	fCY;	// 세로 사이즈
 
 }INFO;
+
+struct Vector2 {
+	float x;
+	float y;
+
+	Vector2() : x(0), y(0) {}
+	Vector2(float x, float y) : x(x), y(y) {}
+
+	
+	Vector2 normalize() const {
+		float length = sqrt(x * x + y * y);
+		if (length != 0) {
+			return Vector2(x / length, y / length);
+		}
+		return Vector2(0, 0);
+	}
+};
 
 typedef struct tagFrame
 {
