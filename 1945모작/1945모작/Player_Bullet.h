@@ -22,8 +22,8 @@ public:
 
 	void Set_BulletKind(PLAYER_BULLET eBullet) { m_eBulletKind = eBullet; };
 
-
 private:
+
 	const TCHAR* m_pFrameKey;
 
 	float					m_fMIN_X = 30.f;
@@ -34,6 +34,8 @@ private:
 
 	int						m_iMoveRange;
 	int						m_iFrameCnt;
+
 	PLAYER_BULLET			m_eBulletKind;
+
 };
 

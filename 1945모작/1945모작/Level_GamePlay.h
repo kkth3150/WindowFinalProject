@@ -17,5 +17,8 @@ public:
 private:
 	int m_iMap_Update = 0;
 	int m_iScore;
+
+	bool m_bBossDead =	false;
+	bool m_bBossGen  =	false;
 };
 

@@ -125,8 +125,8 @@ void CPlayer_Bullet::Render(HDC hDC)
 
 	GdiTransparentBlt(
 		hDC,
-		m_tRect.left,										// 복사받을 X위치
-		m_tRect.top,										// 복사받을 Y위치
+		(int)m_tInfo.fX - m_tInfo.fCX / 2,					// 복사받을 Y위치
+		(int)m_tInfo.fY - m_tInfo.fCY / 2, 
 		(int)m_tInfo.fCX,									// 복사 받을 가로 길이
 		(int)m_tInfo.fCY,									// 복사 받을 세로 길이
 		BULLETDC,											// 복사할 비트맵 DC

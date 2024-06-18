@@ -1,5 +1,7 @@
 #pragma once
 #include "GameObject.h"
+#include "Boss_Posin.h"
+#include "Boss_Gun.h"
 
 template<typename T>
 class CAbstractFactory
@@ -71,6 +73,25 @@ public:
 		return pGameObject;
 	}
 
+	static CGameObject* CreatePosin(int iPos)
+	{
+		CGameObject* pGameObject = new T;
+		dynamic_cast<CBoss_Posin*>(pGameObject)->Set_PosinPos(iPos);
+		pGameObject->Initialize();
+
+
+		return pGameObject;
+	}
+
+	static CGameObject* CreateGun(int iNum)
+	{
+		CGameObject* pGameObject = new T;
+		dynamic_cast<CBoss_Gun*>(pGameObject)->Set_Gun_Index(iNum);
+		pGameObject->Initialize();
+
+
+		return pGameObject;
+	}
 
 	static CGameObject* Create(float fX, float fY, float fAngle)
 	{

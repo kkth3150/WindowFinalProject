@@ -134,7 +134,11 @@
     <ClInclude Include="1945모작.h" />
     <ClInclude Include="AbstractFactory.h" />
     <ClInclude Include="Bmp_Manager.h" />
+    <ClInclude Include="Boss.h" />
+    <ClInclude Include="Boss_Bullet.h" />
+    <ClInclude Include="Boss_Gun.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Boss_Posin.h" />
     <ClInclude Include="Key_Manager.h" />
     <ClInclude Include="Level_GamePlay.h" />
     <ClInclude Include="Define.h" />
@@ -157,7 +161,11 @@
   <ItemGroup>
     <ClCompile Include="1945모작.cpp" />
     <ClCompile Include="Bmp_Manager.cpp" />
+    <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="Boss_Bullet.cpp" />
+    <ClCompile Include="Boss_Gun.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Boss_Posin.cpp" />
     <ClCompile Include="Key_Manager.cpp" />
     <ClCompile Include="Level_GamePlay.cpp" />
     <ClCompile Include="GameObject.cpp" />

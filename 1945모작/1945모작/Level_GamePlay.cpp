@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Player.h"
+#include "Boss.h"
 #include "Bmp_Manager.h"
 #include "Object_Manager.h"
 #include "Level_GamePlay.h"
@@ -27,6 +28,7 @@ void CLevel_GamePlay::Initialize()
 
 	CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYER, CAbstractFactory<CPlayer>::Create());
 	
+	
 	CGameObject* pScoreUI = CAbstractFactory<CUI>::Create_UI(0.f, 0.f, 460.f, 46.f);
 	pScoreUI->Set_FrameKey(L"SCORE");
 	dynamic_cast<CUI*>(pScoreUI)->Set_State(UI_SCORE);
@@ -41,8 +43,22 @@ void CLevel_GamePlay::Initialize()
 
 int CLevel_GamePlay::Update()
 {
-	if(m_iMap_Update< MAP_SizeY - WINCY-1)
+
+
+	if (m_iMap_Update > MAP_SizeY - WINCY - 1400 && !m_bBossGen) {
+		m_bBossGen = true;
+		CObject_Manager::Get_Instance()->Add_Object(OBJ_BOSS, CAbstractFactory<CBoss>::Create());
+	}
+	else if (m_bBossGen && m_bBossDead) {
 		++m_iMap_Update;
+	}
+	else if (m_bBossGen && !m_bBossDead) {
+		
+	}
+	else {
+		++m_iMap_Update;
+	}
+
 	CObject_Manager::Get_Instance()->Update();
 	return 0;
 }

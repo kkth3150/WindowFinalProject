@@ -64,6 +64,21 @@
     <Filter Include="04.Level_Manager\Levels\04-00.Menu_Level">
       <UniqueIdentifier>{9292c3a6-e83b-4a95-a735-3879407357c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Object_Manager\GameObjects\03-03.Boss">
+      <UniqueIdentifier>{07943c1f-1a21-40cb-a36a-d2c955614be1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object_Manager\GameObjects\03-03.Boss\Posin">
+      <UniqueIdentifier>{6af56f25-4c2c-428d-a536-f8977be4c3a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object_Manager\GameObjects\03-03.Boss\Gun">
+      <UniqueIdentifier>{fa25c216-1c38-4ff4-b464-a0f02494b9bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object_Manager\GameObjects\03-03.Boss\NewFilter1">
+      <UniqueIdentifier>{76de5901-a02b-471c-995b-cdb9e5c96d3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object_Manager\GameObjects\03-04.Boss_Bullet">
+      <UniqueIdentifier>{fafe7fd7-4d60-4e29-8581-7d08a62aceca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -132,6 +147,18 @@
     <ClInclude Include="UI.h">
       <Filter>03.Object_Manager\GameObjects\03-11.UI</Filter>
     </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>03.Object_Manager\GameObjects\03-03.Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss_Posin.h">
+      <Filter>03.Object_Manager\GameObjects\03-03.Boss\Posin</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss_Gun.h">
+      <Filter>03.Object_Manager\GameObjects\03-03.Boss\Gun</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss_Bullet.h">
+      <Filter>03.Object_Manager\GameObjects\03-04.Boss_Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="1945모작.cpp">
@@ -184,6 +211,18 @@
     </ClCompile>
     <ClCompile Include="UI.cpp">
       <Filter>03.Object_Manager\GameObjects\03-11.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>03.Object_Manager\GameObjects\03-03.Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss_Posin.cpp">
+      <Filter>03.Object_Manager\GameObjects\03-03.Boss\Posin</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss_Gun.cpp">
+      <Filter>03.Object_Manager\GameObjects\03-03.Boss\Gun</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss_Bullet.cpp">
+      <Filter>03.Object_Manager\GameObjects\03-04.Boss_Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
