@@ -56,7 +56,7 @@ void CObject_Manager::Late_Update(void)
 		}
 	}
 
-	//충돌처리 여기서 할 예정
+	//싱글톤 충돌처리 여기서 할 예정
 }
 
 void CObject_Manager::Render(HDC hDC)

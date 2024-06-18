@@ -79,6 +79,9 @@
     <Filter Include="03.Object_Manager\GameObjects\03-04.Boss_Bullet">
       <UniqueIdentifier>{fafe7fd7-4d60-4e29-8581-7d08a62aceca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="06.Collision_Manager">
+      <UniqueIdentifier>{12202e04-a255-49b9-abdd-ff2efee00a1a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -159,6 +162,9 @@
     <ClInclude Include="Boss_Bullet.h">
       <Filter>03.Object_Manager\GameObjects\03-04.Boss_Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="Collision_Manager.h">
+      <Filter>06.Collision_Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="1945모작.cpp">
@@ -223,6 +229,9 @@
     </ClCompile>
     <ClCompile Include="Boss_Bullet.cpp">
       <Filter>03.Object_Manager\GameObjects\03-04.Boss_Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision_Manager.cpp">
+      <Filter>06.Collision_Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
