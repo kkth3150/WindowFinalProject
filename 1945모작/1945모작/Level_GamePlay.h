@@ -20,5 +20,10 @@ private:
 
 	bool m_bBossDead =	false;
 	bool m_bBossGen  =	false;
+
+public:
+	DWORD                    Enemy_Count;
+	DWORD					Timer;
+	DWORD					END_Time;
 };
 

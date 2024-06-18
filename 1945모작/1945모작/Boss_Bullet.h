@@ -20,7 +20,6 @@ public:
 public:
 	void Set_Direction(float x, float y);
 	void Set_BOSS_BulletKind(int iNum) {
-
 		m_eBossBulletKind = (BULLET_KIND_BOSS)iNum;
 	};
 

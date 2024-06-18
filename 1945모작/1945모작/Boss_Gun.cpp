@@ -4,6 +4,7 @@
 #include "Bmp_Manager.h"
 #include "Object_Manager.h"
 #include "AbstractFactory.h"
+#include "Explosion_Object.h"
 
 CBoss_Gun::CBoss_Gun()
 {
@@ -17,6 +18,7 @@ void CBoss_Gun::Initialize()
 {
 	CBmp_Manager::Get_Instance()->Insert_Bmp(L"../Image/Boss/mini_28X28X16.bmp", L"MINI_GUN");
 	CBmp_Manager::Get_Instance()->Insert_Bmp(L"../Image/Boss/Boss_Gun_Bullet(8X8X2).bmp", L"MINI_GUN_BULLET");
+
 	m_pFrameKey = L"MINI_GUN";
 	m_tInfo.fCX = 28.f;
 	m_tInfo.fCY = 28.f;
@@ -24,8 +26,9 @@ void CBoss_Gun::Initialize()
 	m_tFrame.iFrameEnd = 15;
 	m_tFrame.iMotion = 0;
 	m_tFrame.dwSpeed = 20;
+	m_iHp = 30;
 	m_tFrame.dwTime = GetTickCount64();
-	m_dwShot_Delay = 500;
+	m_dwShot_Delay = 200;
 	m_dwTimer = GetTickCount64();
 
 }
@@ -104,13 +107,25 @@ int CBoss_Gun::Update()
 
 	Shot_By_Dir();
 
-
 	__super::Update_Rect();
+	if (m_iHp < 0) {
+		CObject_Manager::Get_Instance()->Add_Object(OBJ_EXPLOSION, CAbstractFactory<CExplosion_Object>::Create(m_tInfo.fX, m_tInfo.fY));
+		m_bDead = true;
+	}
+
+
+	if (m_bDead)
+		return OBJ_DEAD;
+
 	return OBJ_NOEVENT;
 }
 
 void CBoss_Gun::Late_Update()
 {
+
+	if (m_bDead) {
+		CObject_Manager::Get_Instance()->Add_Object(OBJ_BOSS, CAbstractFactory<CExplosion_Object>::Create(m_tInfo.fX, m_tInfo.fY));
+	}
 	__super::Move_Frame();
 }
 
@@ -160,12 +175,8 @@ void CBoss_Gun::Shot_By_Dir()
 		float radians = angle * (3.14159265f / 180.0f);
 		float dirX = cos(radians);
 		float dirY = sin(radians);
-		
-		
 
-
-
-		CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYERBULLET, 
+		CObject_Manager::Get_Instance()->Add_Object(OBJ_BULLET_ENEMY,
 			CAbstractFactory<CBoss_Bullet>::CreateBossBullet(m_tInfo.fX, m_tInfo.fY, dirX, dirY,0));
 	}
 }

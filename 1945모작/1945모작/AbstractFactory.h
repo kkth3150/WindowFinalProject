@@ -117,6 +117,15 @@ public:
 		return pGameObject;
 	}
 
+	static CGameObject* CreateEnemyBullet(float fX, float fY, ENEMY_BULLET eBullet)
+	{
+		CGameObject* pGameObject = new T;
+		pGameObject->Set_Pos(fX, fY);
+		dynamic_cast<CEnemy_Bullet*>(pGameObject)->Set_BulletKind(eBullet);
+		pGameObject->Initialize();
 
+
+		return pGameObject;
+	}
 };
 

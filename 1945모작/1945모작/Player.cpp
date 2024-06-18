@@ -5,6 +5,7 @@
 #include "Object_Manager.h"
 #include "AbstractFactory.h"
 #include "Player_Bullet.h"
+#include "Explosion_Object.h"
 
 CPlayer::CPlayer()
 {
@@ -24,6 +25,7 @@ void CPlayer::Initialize()
 	CBmp_Manager::Get_Instance()->Insert_Bmp(L"../Image/Bullet/PlayerBullet/SideBullet/SideBullet_LEFT(24X42X4).bmp", L"SIDELBULLET_IMAGE");
 	CBmp_Manager::Get_Instance()->Insert_Bmp(L"../Image/Bullet/PlayerBullet/SideBullet/SideBullet_RIGHT(24X42X4).bmp", L"SIDERBULLET_IMAGE");
 
+	m_bNODie = false;
 	m_dwShotDelay = 100;
 	m_pFrameKey = L"PLAYER_IMAGE";
 	m_tInfo.fX = 300.f;
@@ -45,6 +47,11 @@ int CPlayer::Update()
 	Key_Input();
 	__super::Update_Rect();
 
+
+	if (m_bDead) {
+		CObject_Manager::Get_Instance()->Add_Object(OBJ_EXPLOSION, CAbstractFactory<CExplosion_Object>::Create(m_tInfo.fX, m_tInfo.fY));
+		return OBJ_DEAD;
+	}
 	return OBJ_NOEVENT;
 }
 
@@ -76,6 +83,7 @@ void CPlayer::Render(HDC hDC)
 
 void CPlayer::Release(void)
 {
+
 }
 
 void CPlayer::Key_Input()
@@ -119,6 +127,11 @@ void CPlayer::Key_Input()
 		}
 	}
 
+	if (CKey_Manager::Get_Instance()->Key_Down(VK_LCONTROL)) {
+		m_bNODie = true;
+	}
+
+
 	if (GetTickCount64() - m_dwShotCount > m_dwShotDelay) {
 		Shot();
 		m_dwShotCount = GetTickCount64();
@@ -149,5 +162,14 @@ void CPlayer::Shot()
 
 void CPlayer::Motion_Change()
 {
+	
+}
+
+void CPlayer::Set_Life()
+{
+
+	CObject_Manager::Get_Instance()->Add_Object(OBJ_EXPLOSION, CAbstractFactory<CExplosion_Object>::Create(m_tInfo.fX, m_tInfo.fY));
+	if (m_iLife > 0)
+		--m_iLife;
 	
 }

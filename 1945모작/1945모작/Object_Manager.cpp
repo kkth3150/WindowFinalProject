@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Object_Manager.h"
+#include "Collision_Manager.h"
 
 CObject_Manager* CObject_Manager::m_pInstance = nullptr;
 
@@ -56,7 +57,13 @@ void CObject_Manager::Late_Update(void)
 		}
 	}
 
-	//싱글톤 충돌처리 여기서 할 예정
+
+
+	CCollision_Manager::Collision_MyBullet(m_ObjectList[OBJ_PLAYERBULLET],m_ObjectList[OBJ_BOSSPART]);
+	CCollision_Manager::Collision_MyBullet(m_ObjectList[OBJ_PLAYERBULLET], m_ObjectList[OBJ_ENEMY_1]);
+	CCollision_Manager::Collision_MyBullet(m_ObjectList[OBJ_PLAYERBULLET], m_ObjectList[OBJ_ENEMY_2]);
+	CCollision_Manager::Collision_MonsterBullet(m_ObjectList[OBJ_PLAYER],m_ObjectList[OBJ_BULLET_ENEMY]);
+	
 }
 
 void CObject_Manager::Render(HDC hDC)

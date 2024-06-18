@@ -2,6 +2,7 @@
 #include "Boss.h"
 #include "Bmp_Manager.h"
 #include "Object_Manager.h"
+#include "Key_Manager.h"
 #include "AbstractFactory.h"
 
 CBoss::CBoss()
@@ -20,19 +21,41 @@ void CBoss::Initialize()
 	Set_Init_Boss_Parts();
 
 	m_pFrameKey = L"BOSS_IDLE";
-	m_tInfo.fX = 1000.f;
-	m_tInfo.fY = 800.f;
+	m_tInfo.fX = 1500.f;
+	m_tInfo.fY = 150.f;
 	m_tInfo.fCX = 1365.f;
 	m_tInfo.fCY = 166.f;
 	m_fSpeed = 3.f;
+	Boss_Page = PAGE_1;
 }
 
 int CBoss::Update()
 {
-	if(m_tInfo.fX<600){
-		m_tInfo.fX -= m_fSpeed;
+
+	switch (Boss_Page) {
+	case PAGE_1:
+		if (m_tInfo.fX > 600) {
+			m_tInfo.fX -= m_fSpeed;
+		}
+
+		break;
+	case PAGE_2:
+
+		if (m_tInfo.fX > 0) {
+			m_tInfo.fX -= m_fSpeed;
+		}
+
+		break;
+
+	case PAGE_3:
+		break;
+
+	default:
+		break;
 	}
-	
+
+
+
 	__super::Update_Rect();
 
 
@@ -41,6 +64,33 @@ int CBoss::Update()
 
 void CBoss::Late_Update()
 {
+
+	switch (Boss_Page) {
+	case PAGE_1:
+
+		if (CKey_Manager::Get_Instance()->Key_Down(VK_RETURN))
+			Boss_Page = PAGE_2;
+
+		if (CObject_Manager::Get_Instance()->Get_List(OBJ_BOSSPART)->size() < 10)
+			Boss_Page = PAGE_2;
+
+		break;
+
+	case PAGE_2:
+
+		if (CObject_Manager::Get_Instance()->Get_List(OBJ_BOSSPART)->size() < 0)
+			Boss_Page = PAGE_3;
+
+		break;
+
+	case PAGE_3:
+		//Æø¹ß ÀÌÆåÆ®
+		break;
+
+	default:
+		break;
+	}
+
 	__super::Move_Frame();
 }
 

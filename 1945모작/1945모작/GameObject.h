@@ -22,6 +22,7 @@ public:
 	}
 	void		Set_Direction(DIRECTION eDir) { m_eDir = eDir; }
 	void		Set_Dead() { m_bDead = true; }
+	void		Set_DeadMotion() { m_bDeadMotion = true; }
 	void		Set_Angle(float _fAngle) { m_fAngle = _fAngle; }
 	void		Set_Size(float fCX, float fCY) { m_tInfo.fCX = fCX, m_tInfo.fCY = fCY; };
 
@@ -61,6 +62,9 @@ protected:
 	float		m_fAngle;
 	int			m_iHp;
 	int			m_iAttack;
+	float		m_fSpeed_Y;
+
+	bool		m_bDeadMotion;
 
 	const TCHAR* m_pFrameKey;
 

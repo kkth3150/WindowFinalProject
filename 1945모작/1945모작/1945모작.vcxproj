@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -120,7 +120,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -140,6 +140,10 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Boss_Posin.h" />
     <ClInclude Include="Collision_Manager.h" />
+    <ClInclude Include="Enemy_1.h" />
+    <ClInclude Include="Enemy_2.h" />
+    <ClInclude Include="Enemy_Bullet.h" />
+    <ClInclude Include="Explosion_Object.h" />
     <ClInclude Include="Key_Manager.h" />
     <ClInclude Include="Level_GamePlay.h" />
     <ClInclude Include="Define.h" />
@@ -168,6 +172,10 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Boss_Posin.cpp" />
     <ClCompile Include="Collision_Manager.cpp" />
+    <ClCompile Include="Enemy_1.cpp" />
+    <ClCompile Include="Enemy_2.cpp" />
+    <ClCompile Include="Enemy_Bullet.cpp" />
+    <ClCompile Include="Explosion_Object.cpp" />
     <ClCompile Include="Key_Manager.cpp" />
     <ClCompile Include="Level_GamePlay.cpp" />
     <ClCompile Include="GameObject.cpp" />

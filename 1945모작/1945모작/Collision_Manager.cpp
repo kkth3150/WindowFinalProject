@@ -3,18 +3,18 @@
 #include "Player.h"
 
 
-CCollisionMgr::CCollisionMgr()
+CCollision_Manager::CCollision_Manager()
 {
 }
 
 
-CCollisionMgr::~CCollisionMgr()
+CCollision_Manager::~CCollision_Manager()
 {
 
 }
 
 
-void CCollisionMgr::Collision_Rect(list<CGameObject*> _Dst, list<CGameObject*> _Src)
+void CCollision_Manager::Collision_Rect(list<CGameObject*> _Dst, list<CGameObject*> _Src)
 {
 	RECT	rc{};
 
@@ -32,7 +32,7 @@ void CCollisionMgr::Collision_Rect(list<CGameObject*> _Dst, list<CGameObject*> _
 
 }
 
-void CCollisionMgr::Collision_Monster(list<CGameObject*> _Dst, list<CGameObject*> _Src)
+void CCollision_Manager::Collision_Monster(list<CGameObject*> _Dst, list<CGameObject*> _Src)
 {
 	RECT	rc{};
 
@@ -49,26 +49,7 @@ void CCollisionMgr::Collision_Monster(list<CGameObject*> _Dst, list<CGameObject*
 
 }
 
-void CCollisionMgr::Collision_ITEM(list<CGameObject*> _Dst, list<CGameObject*> _Src)
-{
-	RECT	rc{};
-
-	for (auto& Dst : _Dst)
-	{
-		for (auto& Src : _Src)
-		{
-			if (IntersectRect(&rc, Dst->Get_Rect(), Src->Get_Rect()))
-			{
-
-				Src->Set_Dead();
-			}
-		}
-	}
-
-}
-
-
-void CCollisionMgr::Collision_Bomb_ITEM(list<CGameObject*> _Dst, list<CGameObject*> _Src)
+void CCollision_Manager::Collision_ITEM(list<CGameObject*> _Dst, list<CGameObject*> _Src)
 {
 	RECT	rc{};
 
@@ -86,7 +67,8 @@ void CCollisionMgr::Collision_Bomb_ITEM(list<CGameObject*> _Dst, list<CGameObjec
 
 }
 
-void CCollisionMgr::Collision_MyBullet(list<CGameObject*> _Dst, list<CGameObject*> _Src)
+
+void CCollision_Manager::Collision_Bomb_ITEM(list<CGameObject*> _Dst, list<CGameObject*> _Src)
 {
 	RECT	rc{};
 
@@ -97,6 +79,44 @@ void CCollisionMgr::Collision_MyBullet(list<CGameObject*> _Dst, list<CGameObject
 			if (IntersectRect(&rc, Dst->Get_Rect(), Src->Get_Rect()))
 			{
 
+				Src->Set_Dead();
+			}
+		}
+	}
+
+}
+
+void CCollision_Manager::Collision_MyBullet(list<CGameObject*> _Dst, list<CGameObject*> _Src)
+{
+	RECT	rc{};
+
+	for (auto& Dst : _Dst)
+	{
+		for (auto& Src : _Src)
+		{
+			if (IntersectRect(&rc, Dst->Get_Rect(), Src->Get_Rect()))
+			{
+				Dst->Set_Dead();
+				Src->Set_Hp(1);
+			}
+		}
+	}
+
+}
+
+
+void CCollision_Manager::Collision_MonsterBullet(list<CGameObject*> _Dst, list<CGameObject*> _Src)
+{
+	RECT	rc{};
+
+	for (auto& Dst : _Dst)
+	{
+		for (auto& Src : _Src)
+		{
+			if (IntersectRect(&rc, Dst->Get_Rect(), Src->Get_Rect()))
+			{
+				dynamic_cast<CPlayer*>(Dst)->Set_Life();
+				Src->Set_Dead();
 			}
 		}
 	}
@@ -105,8 +125,7 @@ void CCollisionMgr::Collision_MyBullet(list<CGameObject*> _Dst, list<CGameObject
 
 
 
-
-void CCollisionMgr::Collision_RectEx(list<CGameObject*> _Dst, list<CGameObject*> _Src)
+void CCollision_Manager::Collision_RectEx(list<CGameObject*> _Dst, list<CGameObject*> _Src)
 {
 	float	fX = 0.f, fY = 0.f;
 
@@ -148,7 +167,7 @@ void CCollisionMgr::Collision_RectEx(list<CGameObject*> _Dst, list<CGameObject*>
 
 }
 
-bool CCollisionMgr::Check_Rect(CGameObject* pDst, CGameObject* pSrc, float* _pX, float* _pY)
+bool CCollision_Manager::Check_Rect(CGameObject* pDst, CGameObject* pSrc, float* _pX, float* _pY)
 {
 	float	fWidth = abs(pDst->Get_Info().fX - pSrc->Get_Info().fX);
 	float	fHeight = abs(pDst->Get_Info().fY - pSrc->Get_Info().fY);
@@ -167,7 +186,7 @@ bool CCollisionMgr::Check_Rect(CGameObject* pDst, CGameObject* pSrc, float* _pX,
 	return false;
 }
 
-void CCollisionMgr::Collision_Sphere(list<CGameObject*> _Dst, list<CGameObject*> _Src)
+void CCollision_Manager::Collision_Sphere(list<CGameObject*> _Dst, list<CGameObject*> _Src)
 {
 	for (auto& Dst : _Dst)
 	{
@@ -182,7 +201,7 @@ void CCollisionMgr::Collision_Sphere(list<CGameObject*> _Dst, list<CGameObject*>
 	}
 }
 
-bool CCollisionMgr::Check_Sphere(CGameObject* pDst, CGameObject* pSrc)
+bool CCollision_Manager::Check_Sphere(CGameObject* pDst, CGameObject* pSrc)
 {
 	float	fWidth = abs(pDst->Get_Info().fX - pSrc->Get_Info().fX);
 	float	fHeight = abs(pDst->Get_Info().fY - pSrc->Get_Info().fY);

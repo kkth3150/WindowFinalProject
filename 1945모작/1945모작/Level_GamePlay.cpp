@@ -6,6 +6,9 @@
 #include "Level_GamePlay.h"
 #include "AbstractFactory.h"
 #include "UI.h"
+#include "Enemy_1.h"
+#include "Enemy_2.h"
+#include "Level_Manager.h"
 
 #define MAP_SizeY 5353
 #define MAP_SizeX 600
@@ -25,6 +28,7 @@ void CLevel_GamePlay::Initialize()
 	CBmp_Manager::Get_Instance()->Insert_Bmp(L"../Image/Map/Stage_A1.bmp", L"STAGE_A");
 	CBmp_Manager::Get_Instance()->Insert_Bmp(L"../Image/UI/Score(47X47X10).bmp", L"SCORE");
 	CBmp_Manager::Get_Instance()->Insert_Bmp(L"../Image/UI/Life(30X40X4).bmp", L"LIFE");
+	END_Time = 3000;
 
 	CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYER, CAbstractFactory<CPlayer>::Create());
 	
@@ -39,6 +43,7 @@ void CLevel_GamePlay::Initialize()
 	dynamic_cast<CUI*>(pLifeUI)->Set_State(UI_LIFE);
 	CObject_Manager::Get_Instance()->Add_Object(OBJ_UI, pLifeUI);
 
+	Enemy_Count = GetTickCount64();
 
 }
 
@@ -46,20 +51,34 @@ int CLevel_GamePlay::Update()
 {
 	
 
-	if (m_iMap_Update > MAP_SizeY - WINCY - 4000 && !m_bBossGen) {
+	if (m_iMap_Update > MAP_SizeY - WINCY - 1200 && !m_bBossGen) {
 		m_bBossGen = true;
 		CObject_Manager::Get_Instance()->Add_Object(OBJ_BOSS, CAbstractFactory<CBoss>::Create());
 	}
-	else if (m_bBossGen && m_bBossDead) {
-		++m_iMap_Update;
-	}
 	else if (m_bBossGen && !m_bBossDead) {
+		if (CObject_Manager::Get_Instance()->List_Empty(OBJ_BOSSPART)) {
+			m_bBossDead = true;
+			Timer = GetTickCount64();
+		}
 		
+	}
+	else if (m_bBossGen && m_bBossDead) {
+		if (Timer + END_Time < GetTickCount64()) {
+			CLevel_Manager::Get_Instance()->Level_Change(LEVEL_GAME_END);
+		}
 	}
 	else {
 		++m_iMap_Update;
 	}
 
+	if (!m_bBossGen) {
+		if ((GetTickCount64() - Enemy_Count) % 3000 == 0) {
+			CObject_Manager::Get_Instance()->Add_Object(OBJ_ENEMY_2, CAbstractFactory<CEnemy_2>::Create(rand() % 600, 0));
+		}
+		if ((GetTickCount64() - Enemy_Count) % 2000 == 0) {
+			CObject_Manager::Get_Instance()->Add_Object(OBJ_ENEMY_1, CAbstractFactory<CEnemy_1>::Create(rand() % 600 - 51, rand() % 300 + 51));
+		}
+	}
 	CObject_Manager::Get_Instance()->Update();
 	return 0;
 }

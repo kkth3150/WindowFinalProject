@@ -23,6 +23,8 @@ public:
 
 	int		Get_Score() { return m_iScore; };
 	int		Get_Life() { return m_iLife; };
+
+	void	Set_Life();
 	//void	Move_Player_Frame();
 
 
@@ -46,6 +48,8 @@ private:
 
 	int						m_iLife;
 	int						m_iScore;
+
+	bool					m_bNODie;
 
 };
 

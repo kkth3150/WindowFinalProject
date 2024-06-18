@@ -2,11 +2,11 @@
 
 #include "GameObject.h"
 
-class CCollisionMgr
+class CCollision_Manager
 {
 public:
-	CCollisionMgr();
-	~CCollisionMgr();
+	CCollision_Manager();
+	~CCollision_Manager();
 
 public:
 	static void Collision_Rect(list<CGameObject*> _Dst, list<CGameObject*> _Src);
@@ -14,10 +14,14 @@ public:
 	static void Collision_ITEM(list<CGameObject*> _Dst, list<CGameObject*> _Src);
 	static void Collision_Bomb_ITEM(list<CGameObject*> _Dst, list<CGameObject*> _Src);
 	static void Collision_MyBullet(list<CGameObject*> _Dst, list<CGameObject*> _Src);
+	static void Collision_MonsterBullet(list<CGameObject*> _Dst, list<CGameObject*> _Src);
+	
 	static void Collision_Helicop(list<CGameObject*> _Dst, list<CGameObject*> _Src);
 	static void Collision_NPC(list<CGameObject*> _Dst, list<CGameObject*> _Src);
 	static void Collision_RectEx(list<CGameObject*> _Dst, list<CGameObject*> _Src);
 	static bool Check_Rect(CGameObject* pDst, CGameObject* pSrc, float* _pX, float* _pY);
+
+
 
 	static void Collision_Sphere(list<CGameObject*> _Dst, list<CGameObject*> _Src);
 	static bool Check_Sphere(CGameObject* pDst, CGameObject* pSrc);

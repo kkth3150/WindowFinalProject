@@ -21,7 +21,13 @@ public:
 public:
 	void Set_PosinAngle();
 	void Set_PosinPos(int iNum);
+	void Shot_By_Dir();
 
+	float angle = 0.0f;
+	
+	DWORD m_dwShot_Delay;
+	DWORD m_dwTimer;
+	
 	POSIN_NUM	m_ePosinLabel;
 	PLAYER_LOOK m_ePosinLook;
 

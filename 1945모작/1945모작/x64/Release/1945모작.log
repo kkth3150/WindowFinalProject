@@ -1,13 +1,24 @@
-﻿  Boss.cpp
-C:\Users\kkth3\OneDrive\문서\GitHub\WindowFinalProject\1945모작\1945모작\GameObject.h(38,35): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  (소스 파일 'Boss.cpp'을(를) 컴파일하는 중)
+﻿  Level_GamePlay.cpp
+C:\Users\kkth3\OneDrive\문서\GitHub\WindowFinalProject\1945모작\1945모작\GameObject.h(39,35): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/Level_GamePlay.cpp'을(를) 컴파일하는 중)
   
-C:\Users\kkth3\OneDrive\문서\GitHub\WindowFinalProject\1945모작\1945모작\Boss.cpp(63,10): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\kkth3\OneDrive\문서\GitHub\WindowFinalProject\1945모작\1945모작\Boss.cpp(62,10): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\kkth3\OneDrive\문서\GitHub\WindowFinalProject\1945모작\1945모작\Boss.cpp(56,19): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\kkth3\OneDrive\문서\GitHub\WindowFinalProject\1945모작\1945모작\Boss.cpp(55,19): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\kkth3\OneDrive\문서\GitHub\WindowFinalProject\1945모작\1945모작\Level_GamePlay.cpp(46,30): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/Level_GamePlay.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\kkth3\OneDrive\문서\GitHub\WindowFinalProject\1945모작\1945모작\Level_GamePlay.cpp(61,26): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/Level_GamePlay.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\kkth3\OneDrive\문서\GitHub\WindowFinalProject\1945모작\1945모작\Level_GamePlay.cpp(76,103): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/Level_GamePlay.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\kkth3\OneDrive\문서\GitHub\WindowFinalProject\1945모작\1945모작\Level_GamePlay.cpp(79,128): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/Level_GamePlay.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\kkth3\OneDrive\문서\GitHub\WindowFinalProject\1945모작\1945모작\Level_GamePlay.cpp(79,109): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/Level_GamePlay.cpp'을(를) 컴파일하는 중)
+  
   코드를 생성하고 있습니다.
-  1 of 392 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+  2 of 463 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.

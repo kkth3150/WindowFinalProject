@@ -16,15 +16,30 @@ CBoss_Bullet::~CBoss_Bullet()
 
 void CBoss_Bullet::Initialize()
 {
-	m_tInfo.fCX = 8.f;
-	m_tInfo.fCY = 8.f;
-	m_fSpeed = 3.f;
-	m_tFrame.iFrameStart = 0;
-	m_tFrame.iFrameEnd = 1;
-	m_tFrame.iMotion = 0;
-	m_tFrame.dwSpeed = 500;
-	m_tFrame.dwTime = GetTickCount64();
-	m_pFrameKey = L"MINI_GUN_BULLET";
+	if (m_eBossBulletKind == BOSS_BULLET_GUN) {
+
+		m_tInfo.fCX = 8.f;
+		m_tInfo.fCY = 8.f;
+		m_fSpeed = 4.f;
+		m_tFrame.iFrameStart = 0;
+		m_tFrame.iFrameEnd = 1;
+		m_tFrame.iMotion = 0;
+		m_tFrame.dwSpeed = 100;
+		m_tFrame.dwTime = GetTickCount64();
+		m_pFrameKey = L"MINI_GUN_BULLET";
+	}
+	else {
+		m_tInfo.fCX = 10.f;
+		m_tInfo.fCY = 10.f;
+		m_fSpeed = 5.f;
+		m_tFrame.iFrameStart = 0;
+		m_tFrame.iFrameEnd = 1;
+		m_tFrame.iMotion = 0;
+		m_tFrame.dwSpeed = 100;
+		m_tFrame.dwTime = GetTickCount64();
+		m_pFrameKey = L"POSIN_BULLET";
+
+	}
 }
 
 int CBoss_Bullet::Update()
@@ -36,12 +51,18 @@ int CBoss_Bullet::Update()
 	if (m_bDead)
 		return OBJ_DEAD;
 
+
+
+	__super::Update_Rect();
+
 	return OBJ_NOEVENT;
+
+
 }
 
 void CBoss_Bullet::Late_Update()
 {
-	
+	__super::Move_Frame();
 }
 
 void CBoss_Bullet::Render(HDC hDC)

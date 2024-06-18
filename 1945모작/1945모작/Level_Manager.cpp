@@ -20,7 +20,8 @@ void CLevel_Manager::Level_Change(LEVEL_ID eID)
 		Safe_Delete(m_pLevel);
 
 		switch (m_eCurLevel) {
-		case LEVEL_LOGO:
+		case LEVEL_GAME_END:
+			m_pLevel = new CLevel_GameEnd;
 			break;
 
 		case LEVEL_MENU:

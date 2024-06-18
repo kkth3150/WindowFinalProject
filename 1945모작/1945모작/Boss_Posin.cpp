@@ -2,6 +2,8 @@
 #include "Boss_Posin.h"
 #include "Object_Manager.h"
 #include "Bmp_Manager.h"
+#include "AbstractFactory.h"
+#include "Explosion_Object.h"
 
 CBoss_Posin::CBoss_Posin()
 {
@@ -16,17 +18,18 @@ CBoss_Posin::~CBoss_Posin()
 void CBoss_Posin::Initialize()
 {
 	CBmp_Manager::Get_Instance()->Insert_Bmp(L"../Image/Boss/Posin_50X50X8.bmp", L"POSIN");
+	CBmp_Manager::Get_Instance()->Insert_Bmp(L"../Image/Boss/Boss_Posin_Bullet(10X10X2).bmp", L"POSIN_BULLET");
 	m_pFrameKey = L"POSIN";
 	m_tInfo.fCX = 50.f;
 	m_tInfo.fCY = 50.f;
+	m_dwShot_Delay = 1000;
+	m_iHp = 30;
+	m_dwTimer = GetTickCount64();
 
 }
 
 int CBoss_Posin::Update()
 {
-
-	
-
 	m_fBossPosX = CObject_Manager::Get_Instance()->Get_List(OBJ_BOSS)->front()->Get_Info().fX;
 	m_fBossPosY = CObject_Manager::Get_Instance()->Get_List(OBJ_BOSS)->front()->Get_Info().fY;
 	switch (m_ePosinLabel) {
@@ -71,6 +74,18 @@ int CBoss_Posin::Update()
 	}
 
 	Set_PosinAngle();
+	Shot_By_Dir();
+	__super::Update_Rect();
+
+	if (m_iHp < 0) {
+		CObject_Manager::Get_Instance()->Add_Object(OBJ_EXPLOSION, CAbstractFactory<CExplosion_Object>::Create(m_tInfo.fX, m_tInfo.fY));
+		m_bDead = true;
+	}
+
+
+	if (m_bDead)
+		return OBJ_DEAD;
+
 
 	return OBJ_NOEVENT;
 
@@ -78,7 +93,10 @@ int CBoss_Posin::Update()
 
 void CBoss_Posin::Late_Update()
 {
-
+	if (m_bDead) {
+		CObject_Manager::Get_Instance()->Add_Object(OBJ_BOSS, CAbstractFactory<CExplosion_Object>::Create(m_tInfo.fX, m_tInfo.fY));
+	}
+	__super::Move_Frame();
 }
 
 void CBoss_Posin::Render(HDC hDC)
@@ -191,4 +209,27 @@ void CBoss_Posin::Set_PosinPos(int iNum)
 
 	m_ePosinLabel = (POSIN_NUM)iNum;
 
+}
+
+
+void CBoss_Posin::Shot_By_Dir()
+{
+
+	float PlayerX = CObject_Manager::Get_Instance()->Get_Player()->Get_Info().fX;
+	float PlayerY = CObject_Manager::Get_Instance()->Get_Player()->Get_Info().fY;
+
+
+	if (m_dwTimer + m_dwShot_Delay < GetTickCount64()) {
+		m_dwTimer = GetTickCount64();
+
+		float dirX = PlayerX - m_tInfo.fX;
+		float dirY = PlayerY - m_tInfo.fY;
+		float length = sqrt(dirX * dirX + dirY * dirY);
+		if (length != 0) {
+			dirX /= length;
+			dirY /= length;
+		}
+		CObject_Manager::Get_Instance()->Add_Object(OBJ_BULLET_ENEMY,
+			CAbstractFactory<CBoss_Bullet>::CreateBossBullet(m_tInfo.fX, m_tInfo.fY, dirX, dirY, 1));
+	}
 }
